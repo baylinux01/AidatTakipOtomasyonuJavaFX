@@ -1,4 +1,4 @@
-module AidatTakipJavaFX {
+module aidatTakipJavaFXMaven {
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires java.sql;
