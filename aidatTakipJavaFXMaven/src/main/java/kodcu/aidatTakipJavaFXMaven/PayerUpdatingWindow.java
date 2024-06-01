@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -122,7 +123,7 @@ public class PayerUpdatingWindow extends Application {
 		{
 			payerNos.add(payer.getPayerNo());
 		}
-		ChoiceBox cb2=new ChoiceBox();
+		ChoiceBox<Long> cb2=new ChoiceBox<Long>();
 		cb2.setPrefSize(190, 20);
 		cb2.setLayoutX(10);
 		cb2.setLayoutY(240);
@@ -133,11 +134,11 @@ public class PayerUpdatingWindow extends Application {
 		
 		
 		
-		EventHandler payerUpdatingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> payerUpdatingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				long payerNo=Long.valueOf(cb2.getValue().toString());
 				String newName=textField.getText();
@@ -186,11 +187,11 @@ public class PayerUpdatingWindow extends Application {
 		root.getChildren().add(btnMukellefBilgileriniGuncelle);
 		btnMukellefBilgileriniGuncelle.setOnAction(payerUpdatingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);

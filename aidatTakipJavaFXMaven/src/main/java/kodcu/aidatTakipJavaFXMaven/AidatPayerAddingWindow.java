@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -143,11 +144,11 @@ public class AidatPayerAddingWindow extends Application{
 		textArea.setWrapText(true);
 		root.getChildren().add(textArea);
 		
-		EventHandler aidatPayerAddingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> aidatPayerAddingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				int result=-1;
 				String payerName=textField.getText();
@@ -226,11 +227,11 @@ public class AidatPayerAddingWindow extends Application{
 		root.getChildren().add(btnMukellefiKaydet);
 		btnMukellefiKaydet.setOnAction(aidatPayerAddingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);

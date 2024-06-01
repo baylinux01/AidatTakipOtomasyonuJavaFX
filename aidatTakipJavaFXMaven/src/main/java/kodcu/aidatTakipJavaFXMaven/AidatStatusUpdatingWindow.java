@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -75,7 +76,7 @@ public class AidatStatusUpdatingWindow extends Application {
 		root.getChildren().add(label);
 		
 		
-		ChoiceBox cb=new ChoiceBox();
+		ChoiceBox<Integer> cb=new ChoiceBox<Integer>();
 		cb.setPrefSize(190, 20);
 		cb.setLayoutX(10);
 		cb.setLayoutY(30);
@@ -90,7 +91,7 @@ public class AidatStatusUpdatingWindow extends Application {
 		root.getChildren().add(label1);
 
 		
-		ChoiceBox cb1=new ChoiceBox();
+		ChoiceBox<Long> cb1=new ChoiceBox<Long>();
 		cb1.setPrefSize(190, 20);
 		cb1.setLayoutX(10);
 		cb1.setLayoutY(90);
@@ -110,7 +111,7 @@ public class AidatStatusUpdatingWindow extends Application {
 		{
 			payerNos.add(payer.getPayerNo());
 		}
-		ChoiceBox cb2=new ChoiceBox();
+		ChoiceBox<Long> cb2=new ChoiceBox<Long>();
 		cb2.setPrefSize(190, 20);
 		cb2.setLayoutX(10);
 		cb2.setLayoutY(150);
@@ -132,11 +133,11 @@ public class AidatStatusUpdatingWindow extends Application {
 		listView.getSelectionModel().select(0);
 		root.getChildren().add(listView);
 		
-		EventHandler aidatAmountUpdatingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> aidatAmountUpdatingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				long aidatMonth=1;
 				long aidatYear=2000;
@@ -230,11 +231,11 @@ public class AidatStatusUpdatingWindow extends Application {
 		root.getChildren().add(btnAidatTutariniGuncelle);
 		btnAidatTutariniGuncelle.setOnAction(aidatAmountUpdatingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);

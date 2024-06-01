@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -124,11 +125,11 @@ public class AidatAmountUpdatingWindow extends Application {
 		textField2.setLayoutY(150);
 		root.getChildren().add(textField2);
 		
-		EventHandler aidatAmountUpdatingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> aidatAmountUpdatingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				long aidatMonth=1;
 				long aidatYear=2000;
@@ -268,11 +269,11 @@ public class AidatAmountUpdatingWindow extends Application {
 		root.getChildren().add(btnAidatTutariniGuncelle);
 		btnAidatTutariniGuncelle.setOnAction(aidatAmountUpdatingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);

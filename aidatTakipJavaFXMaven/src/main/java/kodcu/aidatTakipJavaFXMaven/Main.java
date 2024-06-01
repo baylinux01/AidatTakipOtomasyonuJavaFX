@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -32,8 +33,8 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
-	ChoiceBox cb;
-	TableView tableView,tableView1,tableView2;
+	ChoiceBox<Long> cb;
+	TableView<AidatToShow> tableView,tableView1,tableView2;
 	TextField textField1,textField2,textField3,textField4,textField5;
 	TextArea textArea;
 	long mukellefinOdenmemisToplami;
@@ -50,11 +51,11 @@ public class Main extends Application {
 			dao.createDatabase();
 			dao.createAidatPayerTable();
 			dao.createAidatTable();
-			EventHandler openAidatPayerAddingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openAidatPayerAddingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatPayerAddingWindow=new Group();
 					Scene sceneOpenAidatPayerAddingWindow=new Scene(rootOpenAidatPayerAddingWindow,400,400);
@@ -81,11 +82,11 @@ public class Main extends Application {
 			root.getChildren().add(btnMukellefEkle);
 			btnMukellefEkle.setOnAction(openAidatPayerAddingWindowEventHandler);
 			
-			EventHandler openAidatAddingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openAidatAddingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatAddingWindow=new Group();
 					Scene sceneOpenAidatAddingWindow=new Scene(rootOpenAidatAddingWindow,400,400);
@@ -112,11 +113,11 @@ public class Main extends Application {
 			root.getChildren().add(btnAidatEklemeSayfasiniAc);
 			btnAidatEklemeSayfasiniAc.setOnAction(openAidatAddingWindowEventHandler);
 			
-			EventHandler openAidatAmountUpdatingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openAidatAmountUpdatingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatAmountUpdatingWindow=new Group();
 					Scene sceneOpenAidatAmountUpdatingWindow=new Scene(rootOpenAidatAmountUpdatingWindow,400,400);
@@ -143,11 +144,11 @@ public class Main extends Application {
 			root.getChildren().add(btnAidatMiktariniGuncellemeSayfasiniAc);
 			btnAidatMiktariniGuncellemeSayfasiniAc.setOnAction(openAidatAmountUpdatingWindowEventHandler);
 			
-			EventHandler openAidatStatusUpdatingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openAidatStatusUpdatingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatStatusUpdatingWindow=new Group();
 					Scene sceneOpenAidatStatusUpdatingWindow=new Scene(rootOpenAidatStatusUpdatingWindow,400,400);
@@ -174,11 +175,11 @@ public class Main extends Application {
 			root.getChildren().add(btnAidatOdenmeDurumunuGuncellemeSayfasiniAc);
 			btnAidatOdenmeDurumunuGuncellemeSayfasiniAc.setOnAction(openAidatStatusUpdatingWindowEventHandler);
 			
-			EventHandler openPayerUpdatingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openPayerUpdatingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenPayerUpdatingWindow=new Group();
 					Scene sceneOpenPayerUpdatingWindow=new Scene(rootOpenPayerUpdatingWindow,400,400);
@@ -206,11 +207,11 @@ public class Main extends Application {
 			btnMukellefGuncellemeSayfasiniAc.setOnAction(openPayerUpdatingWindowEventHandler);
 			
 			
-			EventHandler openAidatDeletingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openAidatDeletingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatDeletingWindow=new Group();
 					Scene sceneOpenAidatDeletingWindow=new Scene(rootOpenAidatDeletingWindow,400,400);
@@ -237,11 +238,11 @@ public class Main extends Application {
 			root.getChildren().add(btnAidatSilmeSayfasiniAc);
 			btnAidatSilmeSayfasiniAc.setOnAction(openAidatDeletingWindowEventHandler);
 			
-			EventHandler openPayerDeletingWindowEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> openPayerDeletingWindowEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenPayerDeletingWindow=new Group();
 					Scene sceneOpenPayerDeletingWindow=new Scene(rootOpenPayerDeletingWindow,400,400);
@@ -268,11 +269,11 @@ public class Main extends Application {
 			root.getChildren().add(btnMukellefSilmeSayfasiniAc);
 			btnMukellefSilmeSayfasiniAc.setOnAction(openPayerDeletingWindowEventHandler);
 			
-			EventHandler clearDBEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> clearDBEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					int result=-1;
 					Alert alert=new Alert(AlertType.CONFIRMATION);
@@ -401,17 +402,17 @@ public class Main extends Application {
 			
 			
 			
-			EventHandler fillTableViewEventHandler=new EventHandler() 
+			EventHandler<ActionEvent> fillTableViewEventHandler=new EventHandler<ActionEvent>() 
 			{
 
 				@Override
-				public void handle(Event arg0) {
+				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					tableView.getItems().clear();
 					long payerNo=Long.valueOf(cb.getValue().toString());
 					List<Aidat> aidats=null;
 					mukellefinOdenmemisToplami=0;
-					List<AidatToShow> aidatsToShow=new ArrayList();
+					List<AidatToShow> aidatsToShow=new ArrayList<AidatToShow>();
 					AidatPayer payer=null;
 					try {
 						payer=dao.getAidatPayerByPayerNo(payerNo);
@@ -451,7 +452,7 @@ public class Main extends Application {
 			};
 			
 			
-			cb=new ChoiceBox();
+			cb=new ChoiceBox<Long>();
 			cb.setPrefSize(190, 20);
 			cb.setLayoutX(300);
 			cb.setLayoutY(30);
@@ -516,7 +517,7 @@ public class Main extends Application {
 			root.getChildren().add(textField1);
 			
 			List<Aidat> aidats=dao.getAllAidats();
-			List<AidatToShow> aidatsToShow=new ArrayList();
+			List<AidatToShow> aidatsToShow=new ArrayList<AidatToShow>();
 			long toplamOdenmemisAidat=0;
 			for(Aidat aidat:aidats)
 			{

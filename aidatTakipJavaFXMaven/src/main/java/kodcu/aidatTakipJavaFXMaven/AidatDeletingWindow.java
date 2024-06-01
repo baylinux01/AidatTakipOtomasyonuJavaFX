@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -75,7 +76,7 @@ public class AidatDeletingWindow extends Application {
 		root.getChildren().add(label);
 		
 		
-		ChoiceBox cb=new ChoiceBox();
+		ChoiceBox<Integer> cb=new ChoiceBox<Integer>();
 		cb.setPrefSize(190, 20);
 		cb.setLayoutX(10);
 		cb.setLayoutY(30);
@@ -90,7 +91,7 @@ public class AidatDeletingWindow extends Application {
 		root.getChildren().add(label1);
 
 		
-		ChoiceBox cb1=new ChoiceBox();
+		ChoiceBox<Long> cb1=new ChoiceBox<Long>();
 		cb1.setPrefSize(190, 20);
 		cb1.setLayoutX(10);
 		cb1.setLayoutY(90);
@@ -99,11 +100,11 @@ public class AidatDeletingWindow extends Application {
 		
 		
 		
-		EventHandler aidatDeletingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> aidatDeletingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				long aidatMonth=1;
 				long aidatYear=2000;
@@ -191,11 +192,11 @@ public class AidatDeletingWindow extends Application {
 		root.getChildren().add(btnAidatSil);
 		btnAidatSil.setOnAction(aidatDeletingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);

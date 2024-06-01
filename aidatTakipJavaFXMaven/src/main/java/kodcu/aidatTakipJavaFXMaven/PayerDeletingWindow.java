@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -77,7 +78,7 @@ public class PayerDeletingWindow extends Application {
 		{
 			payerNos.add(payer.getPayerNo());
 		}
-		ChoiceBox cb=new ChoiceBox();
+		ChoiceBox<Long> cb=new ChoiceBox<Long>();
 		cb.setPrefSize(190, 20);
 		cb.setLayoutX(10);
 		cb.setLayoutY(50);
@@ -86,11 +87,11 @@ public class PayerDeletingWindow extends Application {
 		
 		
 		
-		EventHandler payerDeletingEventHandler=new EventHandler() 
+		EventHandler<ActionEvent> payerDeletingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg0) {
+			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				long payer1No=Long.valueOf(cb.getValue().toString());
 				int result=-1;
@@ -132,7 +133,7 @@ public class PayerDeletingWindow extends Application {
 							{
 								payerNos.add(payer.getPayerNo());
 							}
-							ChoiceBox cb=new ChoiceBox();
+							ChoiceBox<Long> cb=new ChoiceBox<Long>();
 							cb.setPrefSize(190, 20);
 							cb.setLayoutX(10);
 							cb.setLayoutY(50);
@@ -181,11 +182,11 @@ public class PayerDeletingWindow extends Application {
 		root.getChildren().add(btnMukellefiSil);
 		btnMukellefiSil.setOnAction(payerDeletingEventHandler);
 		
-		EventHandler goToMainPageEvent=new EventHandler() 
+		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
-			public void handle(Event arg) {
+			public void handle(ActionEvent arg) {
 				// TODO Auto-generated method stub
 				Group rootMain=new Group();
 				Scene sceneMain=new Scene(rootMain,800,600);
