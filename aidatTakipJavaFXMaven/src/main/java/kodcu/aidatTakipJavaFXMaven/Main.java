@@ -29,6 +29,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 
 
@@ -45,6 +46,9 @@ public class Main extends Application {
 			Group root = new Group();
 			Scene scene = new Scene(root,1200,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Image image=new Image("file:./aidatTakipLogo.jpg");
+			primaryStage.getIcons().add(image);
+			primaryStage.setTitle("Aidat Takip Programı");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Dao dao=new Dao();
@@ -61,6 +65,7 @@ public class Main extends Application {
 					Scene sceneOpenAidatPayerAddingWindow=new Scene(rootOpenAidatPayerAddingWindow,400,400);
 					Stage stageOpenAidatPayerAddingWindow=new Stage();
 					stageOpenAidatPayerAddingWindow.setScene(sceneOpenAidatPayerAddingWindow);
+					stageOpenAidatPayerAddingWindow.getIcons().add(image);
 					stageOpenAidatPayerAddingWindow.setTitle("Aidat Mükellefi Ekleme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					AidatPayerAddingWindow openAidatPayerAddingWindow=new AidatPayerAddingWindow();
@@ -92,6 +97,7 @@ public class Main extends Application {
 					Scene sceneOpenAidatAddingWindow=new Scene(rootOpenAidatAddingWindow,400,400);
 					Stage stageOpenAidatAddingWindow=new Stage();
 					stageOpenAidatAddingWindow.setScene(sceneOpenAidatAddingWindow);
+					stageOpenAidatAddingWindow.getIcons().add(image);
 					stageOpenAidatAddingWindow.setTitle("Mükelleflere Aidat Ekleme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					AidatAddingWindow openAidatAddingWindow=new AidatAddingWindow();
@@ -123,6 +129,7 @@ public class Main extends Application {
 					Scene sceneOpenAidatAmountUpdatingWindow=new Scene(rootOpenAidatAmountUpdatingWindow,400,400);
 					Stage stageOpenAidatAmountUpdatingWindow=new Stage();
 					stageOpenAidatAmountUpdatingWindow.setScene(sceneOpenAidatAmountUpdatingWindow);
+					stageOpenAidatAmountUpdatingWindow.getIcons().add(image);
 					stageOpenAidatAmountUpdatingWindow.setTitle("Aidat Tutarını Güncelleme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					AidatAmountUpdatingWindow openAidatAmountUpdatingWindow=new AidatAmountUpdatingWindow();
@@ -151,9 +158,10 @@ public class Main extends Application {
 				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					Group rootOpenAidatStatusUpdatingWindow=new Group();
-					Scene sceneOpenAidatStatusUpdatingWindow=new Scene(rootOpenAidatStatusUpdatingWindow,400,400);
+					Scene sceneOpenAidatStatusUpdatingWindow=new Scene(rootOpenAidatStatusUpdatingWindow,500,400);
 					Stage stageOpenAidatStatusUpdatingWindow=new Stage();
 					stageOpenAidatStatusUpdatingWindow.setScene(sceneOpenAidatStatusUpdatingWindow);
+					stageOpenAidatStatusUpdatingWindow.getIcons().add(image);
 					stageOpenAidatStatusUpdatingWindow.setTitle("Aidat Ödenme Durumunu Güncelleme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					AidatStatusUpdatingWindow openAidatStatusUpdatingWindow=new AidatStatusUpdatingWindow();
@@ -185,6 +193,7 @@ public class Main extends Application {
 					Scene sceneOpenPayerUpdatingWindow=new Scene(rootOpenPayerUpdatingWindow,400,400);
 					Stage stageOpenPayerUpdatingWindow=new Stage();
 					stageOpenPayerUpdatingWindow.setScene(sceneOpenPayerUpdatingWindow);
+					stageOpenPayerUpdatingWindow.getIcons().add(image);
 					stageOpenPayerUpdatingWindow.setTitle("Mükellef Bilgilerini Güncelleme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					PayerUpdatingWindow openPayerUpdatingWindow=new PayerUpdatingWindow();
@@ -217,6 +226,7 @@ public class Main extends Application {
 					Scene sceneOpenAidatDeletingWindow=new Scene(rootOpenAidatDeletingWindow,400,400);
 					Stage stageOpenAidatDeletingWindow=new Stage();
 					stageOpenAidatDeletingWindow.setScene(sceneOpenAidatDeletingWindow);
+					stageOpenAidatDeletingWindow.getIcons().add(image);
 					stageOpenAidatDeletingWindow.setTitle("Aidat Silme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					AidatDeletingWindow openAidatDeletingWindow=new AidatDeletingWindow();
@@ -248,6 +258,7 @@ public class Main extends Application {
 					Scene sceneOpenPayerDeletingWindow=new Scene(rootOpenPayerDeletingWindow,400,400);
 					Stage stageOpenPayerDeletingWindow=new Stage();
 					stageOpenPayerDeletingWindow.setScene(sceneOpenPayerDeletingWindow);
+					stageOpenPayerDeletingWindow.getIcons().add(image);
 					stageOpenPayerDeletingWindow.setTitle("Mükellef Silme Sayfası");
 					//stageOpenAidatPayerAddingWindow.show();
 					PayerDeletingWindow openPayerDeletingWindow=new PayerDeletingWindow();

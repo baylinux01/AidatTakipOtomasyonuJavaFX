@@ -33,7 +33,7 @@ public class AidatStatusUpdatingWindow extends Application {
 	@Override
 	public void start(Stage arg0) throws Exception {
 		Group root = new Group();
-		Scene scene = new Scene(root,400,400);
+		Scene scene = new Scene(root,500,400);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		arg0.setScene(scene);
 		arg0.show();
