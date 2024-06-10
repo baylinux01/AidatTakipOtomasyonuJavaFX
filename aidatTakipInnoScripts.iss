@@ -24,11 +24,11 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\drgoz\OneDrive\Masaüstü\aidatTakipOtomasyonu\LICENSE.txt
+LicenseFile=C:\Users\user\OneDrive\MasaÃ¼stÃ¼\aidatTakipOtomasyonu\LICENSE.txt
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=C:\Users\drgoz\OneDrive\Masaüstü
+OutputDir=C:\Users\user\OneDrive\MasaÃ¼stÃ¼
 OutputBaseFilename=aidatTakipSetup
 Compression=lzma
 SolidCompression=yes
@@ -41,9 +41,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\drgoz\OneDrive\Masaüstü\aidatTakipOtomasyonu\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\drgoz\OneDrive\Masaüstü\aidatTakipOtomasyonu\aidatTakipLogo.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\drgoz\OneDrive\Masaüstü\aidatTakipOtomasyonu\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\user\OneDrive\MasaÃ¼stÃ¼\aidatTakipOtomasyonu\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\user\OneDrive\MasaÃ¼stÃ¼\aidatTakipOtomasyonu\aidatTakipLogo.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\user\OneDrive\MasaÃ¼stÃ¼\aidatTakipOtomasyonu\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
