@@ -5,7 +5,7 @@
 #define MyAppVersion "2"
 #define MyAppPublisher "baylinux01"
 #define MyAppURL "https://www.github.com/baylinux01"
-#define MyAppExeName "aidatTakipJavaFXMaven-0.0.1-SNAPSHOT-x86_64.exe"
+#define MyAppExeName "aidatTakipJavaFXMaven-0.0.1-SNAPSHOT.jar"
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".exe"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{FBE2BAD8-905B-4FDD-B322-2851D3DCBEC4}
+AppId={{FC8D2304-4D20-49D9-A156-8CF4D3E6DBA9}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -24,11 +24,11 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\user\OneDrive\Masaüstü\aidatTakipOtomasyonu\LICENSE.txt
+LicenseFile=E:\aidatTakipOtomasyonu\LICENSE.txt
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=C:\Users\user\OneDrive\Masaüstü
+OutputDir=E:\aidatTakipOtomasyonu
 OutputBaseFilename=aidatTakipSetup
 Compression=lzma
 SolidCompression=yes
@@ -41,9 +41,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\user\OneDrive\Masaüstü\aidatTakipOtomasyonu\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\user\OneDrive\Masaüstü\aidatTakipOtomasyonu\aidatTakipLogo.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\user\OneDrive\Masaüstü\aidatTakipOtomasyonu\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\aidatTakipOtomasyonu\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\aidatTakipOtomasyonu\aidatTakipLogo.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\aidatTakipOtomasyonu\LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -54,9 +54,9 @@ Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; Value
 Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename:"{app}\aidatTakipLogo.ico";
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon;IconFilename:"{app}\aidatTakipLogo.ico";
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename:"{app}/aidatTakipLogo.ico";
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon;IconFilename:"{app}/aidatTakipLogo.ico";
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
 
