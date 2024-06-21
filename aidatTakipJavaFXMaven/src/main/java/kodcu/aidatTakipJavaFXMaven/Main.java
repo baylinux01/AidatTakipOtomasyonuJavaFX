@@ -85,7 +85,7 @@ public class Main extends Application {
 				
 			};
 			Button btnMukellefEkle= new Button("Mükellef Ekle");
-			btnMukellefEkle.setPrefSize(240, 30);
+			btnMukellefEkle.setPrefSize(260, 30);
 			btnMukellefEkle.setLayoutX(10);
 			btnMukellefEkle.setLayoutY(10);
 			root.getChildren().add(btnMukellefEkle);
@@ -119,7 +119,7 @@ public class Main extends Application {
 				
 			};
 			Button btnAidatEklemeSayfasiniAc= new Button("Aidat Ekle");
-			btnAidatEklemeSayfasiniAc.setPrefSize(240, 30);
+			btnAidatEklemeSayfasiniAc.setPrefSize(260, 30);
 			btnAidatEklemeSayfasiniAc.setLayoutX(10);
 			btnAidatEklemeSayfasiniAc.setLayoutY(50);
 			root.getChildren().add(btnAidatEklemeSayfasiniAc);
@@ -153,7 +153,7 @@ public class Main extends Application {
 				
 			};
 			Button btnAidatMiktariniGuncellemeSayfasiniAc= new Button("Aidat Miktarını Güncelle");
-			btnAidatMiktariniGuncellemeSayfasiniAc.setPrefSize(240, 30);
+			btnAidatMiktariniGuncellemeSayfasiniAc.setPrefSize(260, 30);
 			btnAidatMiktariniGuncellemeSayfasiniAc.setLayoutX(10);
 			btnAidatMiktariniGuncellemeSayfasiniAc.setLayoutY(90);
 			root.getChildren().add(btnAidatMiktariniGuncellemeSayfasiniAc);
@@ -187,7 +187,7 @@ public class Main extends Application {
 				
 			};
 			Button btnAidatOdenmeDurumunuGuncellemeSayfasiniAc= new Button("Aidat Ödenme Durumunu Güncelle");
-			btnAidatOdenmeDurumunuGuncellemeSayfasiniAc.setPrefSize(240, 30);
+			btnAidatOdenmeDurumunuGuncellemeSayfasiniAc.setPrefSize(260, 30);
 			btnAidatOdenmeDurumunuGuncellemeSayfasiniAc.setLayoutX(10);
 			btnAidatOdenmeDurumunuGuncellemeSayfasiniAc.setLayoutY(130);
 			root.getChildren().add(btnAidatOdenmeDurumunuGuncellemeSayfasiniAc);
@@ -221,7 +221,7 @@ public class Main extends Application {
 				
 			};
 			Button btnMukellefGuncellemeSayfasiniAc= new Button("Mükellef Bilgilerini Güncelle");
-			btnMukellefGuncellemeSayfasiniAc.setPrefSize(240, 30);
+			btnMukellefGuncellemeSayfasiniAc.setPrefSize(260, 30);
 			btnMukellefGuncellemeSayfasiniAc.setLayoutX(10);
 			btnMukellefGuncellemeSayfasiniAc.setLayoutY(170);
 			root.getChildren().add(btnMukellefGuncellemeSayfasiniAc);
@@ -256,7 +256,7 @@ public class Main extends Application {
 				
 			};
 			Button btnAidatSilmeSayfasiniAc= new Button("Aidat Sil");
-			btnAidatSilmeSayfasiniAc.setPrefSize(240, 30);
+			btnAidatSilmeSayfasiniAc.setPrefSize(260, 30);
 			btnAidatSilmeSayfasiniAc.setLayoutX(10);
 			btnAidatSilmeSayfasiniAc.setLayoutY(210);
 			root.getChildren().add(btnAidatSilmeSayfasiniAc);
@@ -290,7 +290,7 @@ public class Main extends Application {
 				
 			};
 			Button btnMukellefSilmeSayfasiniAc= new Button("Mükellef Sil");
-			btnMukellefSilmeSayfasiniAc.setPrefSize(240, 30);
+			btnMukellefSilmeSayfasiniAc.setPrefSize(260, 30);
 			btnMukellefSilmeSayfasiniAc.setLayoutX(10);
 			btnMukellefSilmeSayfasiniAc.setLayoutY(250);
 			root.getChildren().add(btnMukellefSilmeSayfasiniAc);
@@ -361,7 +361,7 @@ public class Main extends Application {
 				
 			};
 			Button btnveriTabaniniTemizle= new Button("Veri tabanını sıfırla");
-			btnveriTabaniniTemizle.setPrefSize(240, 30);
+			btnveriTabaniniTemizle.setPrefSize(260, 30);
 			btnveriTabaniniTemizle.setLayoutX(10);
 			btnveriTabaniniTemizle.setLayoutY(290);
 			root.getChildren().add(btnveriTabaniniTemizle);
@@ -403,7 +403,7 @@ public class Main extends Application {
 			root.getChildren().add(label5);
 			
 			textArea=new TextArea();
-			textArea.setPrefSize(250, 120);
+			textArea.setPrefSize(260, 120);
 			textArea.setLayoutX(10);
 			textArea.setLayoutY(470);
 			textArea.setWrapText(true);
