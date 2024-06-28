@@ -2,7 +2,7 @@
 JavaFX ile yazdığım masaüstü aidat takip otomasyonu
 
 Repo indirildikten sonra program,
-bilgisayarınızda java(daha doğrusu jdk versiyon 21) ve sqlite yüklü ise 
+bilgisayarınızda java(daha doğrusu jre) ve sqlite yüklü ise 
 içerisindeki jar dosyasına tıklanarak çalıştırılabilir.
 Program çalıştırıldığında kendi database'ini kendisi oluşturur.
 Ancak programı çalıştırırken jar dosyasını masaüstünde çevresi 
@@ -12,5 +12,5 @@ oluşturmak istediği yer masaüstündeki diğer objelerle çakışabiliyor ve d
 database'i oluşturamayabiliyor. Bu durumda yapılan işlemlere otomatikmen olumsuz
 cevap verebiliyor. Bu durumdan sakınmak için jar dosyasını mutlaka masaüstünde çevresi bomboş bir yere koyun o şekilde çalıştırın.
 Windows işletim sistemli bilgisayarlar için ikinci bir seçenek olarak exe uzantılı installer da eklenmiştir.installer'a tıklayıp next'leyerek program windows bilgisayara yüklenebilir.
-Ayrıca bilgisayarınızda java(jdk versiyon 21) ve sqlite'ın ikisi birden yüklü değil ise program düzgün çalışmayacaktır.
+Ayrıca bilgisayarınızda java(jre) ve sqlite'ın ikisi birden yüklü değil ise program düzgün çalışmayacaktır.
 
