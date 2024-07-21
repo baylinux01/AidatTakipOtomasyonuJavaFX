@@ -141,7 +141,7 @@ public class AidatPayerAddingWindow extends Application{
 		textArea.setPrefSize(190, 60);
 		textArea.setLayoutX(10);
 		textArea.setLayoutY(210);
-		textArea.setWrapText(true);
+		textArea.setWrapText(false);
 		root.getChildren().add(textArea);
 		
 		EventHandler<ActionEvent> aidatPayerAddingEventHandler=new EventHandler<ActionEvent>() 

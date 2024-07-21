@@ -107,7 +107,7 @@ public class PayerUpdatingWindow extends Application {
 		textArea.setPrefSize(190, 60);
 		textArea.setLayoutX(10);
 		textArea.setLayoutY(150);
-		textArea.setWrapText(true);
+		textArea.setWrapText(false);
 		root.getChildren().add(textArea);
 		
 		Label label2=new Label("Mükellef No");
