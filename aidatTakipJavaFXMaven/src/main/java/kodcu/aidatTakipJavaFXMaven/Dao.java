@@ -78,11 +78,11 @@ public class Dao {
 		
 		String query1="Create table AidatPayerTable" +
                 "(" +
-				"PayerId Int primary key,"+
-                "PayerName nvarchar(45),"+
-                 "PayerNo Int unique not null,"+
-                 "PayerPhone nvarchar(200),"+
-                "PayerAddress nvarchar(45)"+");";
+				"PayerId int primary key,"+
+                "PayerName text,"+
+                 "PayerNo int unique not null,"+
+                 "PayerPhone text,"+
+                "PayerAddress text"+");";
 		
 		
 		
@@ -121,12 +121,12 @@ public class Dao {
 		
 		String query1="Create table AidatTable" +
                 "(" +
-				"AidatId Int primary key,"+
-                "AidatMonth Int not null,"+
-                "AidatYear Int not null,"+
-                "AidatAmount Int not null,"+
-                "AidatStatus Int not null,"+
-                 "PayerNo Int not null,"+
+				"AidatId int primary key,"+
+                "AidatMonth int not null,"+
+                "AidatYear int not null,"+
+                "AidatAmount int not null,"+
+                "AidatStatus int not null,"+
+                 "PayerNo int not null,"+
                 "foreign key (PayerNo) references AidatPayerTable(PayerNo)"+");";
 		
 		
