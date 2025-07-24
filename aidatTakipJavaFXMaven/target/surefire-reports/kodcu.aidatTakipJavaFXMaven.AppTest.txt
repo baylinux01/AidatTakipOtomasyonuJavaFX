@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: kodcu.aidatTakipJavaFXMaven.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in kodcu.aidatTakipJavaFXMaven.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in kodcu.aidatTakipJavaFXMaven.AppTest
