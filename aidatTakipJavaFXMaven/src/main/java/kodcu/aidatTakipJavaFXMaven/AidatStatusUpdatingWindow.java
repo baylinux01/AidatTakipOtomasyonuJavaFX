@@ -133,7 +133,7 @@ public class AidatStatusUpdatingWindow extends Application {
 		listView.getSelectionModel().select(0);
 		root.getChildren().add(listView);
 		
-		EventHandler<ActionEvent> aidatAmountUpdatingEventHandler=new EventHandler<ActionEvent>() 
+		EventHandler<ActionEvent> aidatStatusUpdatingEventHandler=new EventHandler<ActionEvent>() 
 		{
 
 			@Override
@@ -224,12 +224,12 @@ public class AidatStatusUpdatingWindow extends Application {
 			}
 			
 		};
-		Button btnAidatTutariniGuncelle= new Button("Aidat Ödenme Durumunu Güncelle");
-		btnAidatTutariniGuncelle.setPrefSize(240, 30);
-		btnAidatTutariniGuncelle.setLayoutX(10);
-		btnAidatTutariniGuncelle.setLayoutY(290);
-		root.getChildren().add(btnAidatTutariniGuncelle);
-		btnAidatTutariniGuncelle.setOnAction(aidatAmountUpdatingEventHandler);
+		Button btnAidatOdenmeDurumunuGuncelle= new Button("Aidat Ödenme Durumunu Güncelle");
+		btnAidatOdenmeDurumunuGuncelle.setPrefSize(240, 30);
+		btnAidatOdenmeDurumunuGuncelle.setLayoutX(10);
+		btnAidatOdenmeDurumunuGuncelle.setLayoutY(290);
+		root.getChildren().add(btnAidatOdenmeDurumunuGuncelle);
+		btnAidatOdenmeDurumunuGuncelle.setOnAction(aidatStatusUpdatingEventHandler);
 		
 		EventHandler<ActionEvent> goToMainPageEvent=new EventHandler<ActionEvent>() 
 		{

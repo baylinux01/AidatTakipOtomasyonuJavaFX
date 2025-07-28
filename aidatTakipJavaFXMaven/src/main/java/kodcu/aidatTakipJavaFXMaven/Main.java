@@ -9,6 +9,8 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 
+import javafx.util.converter.LongStringConverter;
+
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -16,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.FormatStringConverter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,12 +27,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 
@@ -40,6 +49,7 @@ public class Main extends Application {
 	TextArea textArea;
 	long mukellefinOdenmemisToplami;
 	long toplamOdenmemisAidat;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -469,8 +479,12 @@ public class Main extends Application {
 						}
 						aidatsToShow.add(aidatToShow);
 					}
+					Comparator<AidatToShow> myComparator=Comparator.comparing(AidatToShow::getAidatYear)
+							.thenComparing(AidatToShow::getAidatMonth);
+					List<AidatToShow> sortedAidatsToShow=aidatsToShow.stream()
+							.sorted(myComparator).collect(Collectors.toList());
 					textField1.setText(mukellefinOdenmemisToplami+"");
-					tableView.getItems().addAll(aidatsToShow);
+					tableView.getItems().addAll(sortedAidatsToShow);
 					textField3.setText(payer.getPayerName());
 					textField4.setText(payer.getPayerPhone());
 					textArea.setText(payer.getPayerAddress());
@@ -528,6 +542,159 @@ public class Main extends Application {
 			tableView.getColumns().add(col5);
 			//tableview.autosize();
 			
+			tableView.setEditable(true);
+			col4.setEditable(true);
+			
+			col4.setCellFactory(TextFieldTableCell.forTableColumn());
+			
+			tableView.setRowFactory(tv -> 
+			{
+			    TableRow<AidatToShow> row = new TableRow<>();
+			    row.setOnMouseClicked(e -> 
+			    {
+			        if (e.getClickCount() == 2 && !row.isEmpty()) 
+			        {
+//			            int index = row.getIndex();
+//			            ONTESTTableView.edit(index, colONTEST3);
+			        	
+			        	if(tableView.getSelectionModel().getSelectedItem()!=null)
+						{
+							try 
+							{
+								int index = row.getIndex();
+								tableView.edit(index, col4);
+							} 
+							catch (Exception e1) 
+							{
+								e1.printStackTrace();
+							}
+						}
+						else
+						{
+							Alert alert=new Alert(AlertType.INFORMATION);
+							alert.setTitle("Dikkat");
+							alert.setHeaderText("Uyarı");
+							alert.setContentText("Bunu yapmak için önce bir aidat seçmeniz gerekir");
+							alert.showAndWait().orElse(null);
+						}
+			        }
+			    });
+			    
+			    return row;
+			});
+			
+			EventHandler<TableColumn.CellEditEvent<AidatToShow, String>> 
+			changeAidatStatusOnTableViewEventHandler
+						=new EventHandler<TableColumn.CellEditEvent<AidatToShow, String>>()
+			{
+				@Override
+				public void handle(CellEditEvent<AidatToShow, String> event) 
+				{
+					
+					long payerNo=tableView.getSelectionModel().getSelectedItem().getPayerNo();
+					AidatToShow aidatToShowToBeUpdated=tableView.getSelectionModel().getSelectedItem();
+					String newStatus="";
+					if(event.getNewValue().equalsIgnoreCase("Ödendi")) newStatus="Ödendi";
+					else if(event.getNewValue().equalsIgnoreCase("Ödenmedi")) newStatus="Ödenmedi";
+					else newStatus=event.getOldValue();
+					aidatToShowToBeUpdated.setAidatStatus(newStatus);
+					long newStatusCode=0;
+					if(aidatToShowToBeUpdated.getAidatStatus().equals("Ödendi"))
+					{
+						newStatusCode=1;
+					}
+					try 
+					{
+						
+						dao.updateAidatStatus(aidatToShowToBeUpdated.getAidatMonth(),
+								aidatToShowToBeUpdated.getAidatYear(), 
+								aidatToShowToBeUpdated.getPayerNo(), 
+								newStatusCode);
+					}
+					catch(SQLException ex)
+					{
+						
+					}
+					List<Aidat> aidatsOfPayer=null;
+					mukellefinOdenmemisToplami=0;
+					List<AidatToShow> aidatsOfPayerToShow=new ArrayList<AidatToShow>();
+					AidatPayer payer=null;
+					try {
+						payer=dao.getAidatPayerByPayerNo(payerNo);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						aidatsOfPayer=dao.getAidatsByPayerNo(payerNo);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(Aidat aidatOfPayer:aidatsOfPayer)
+					{
+						AidatToShow aidatOfPayerToShow=new AidatToShow();
+						aidatOfPayerToShow.setAidatId(aidatOfPayer.getAidatId());
+						aidatOfPayerToShow.setAidatMonth(aidatOfPayer.getAidatMonth());
+						aidatOfPayerToShow.setAidatYear(aidatOfPayer.getAidatYear());
+						aidatOfPayerToShow.setAidatAmount(aidatOfPayer.getAidatAmount());
+						aidatOfPayerToShow.setPayerNo(aidatOfPayer.getPayerNo());
+						if(aidatOfPayer.getAidatStatus()>0) aidatOfPayerToShow.setAidatStatus("Ödendi");
+						else 
+						{
+							aidatOfPayerToShow.setAidatStatus("Ödenmedi");
+							mukellefinOdenmemisToplami+=aidatOfPayer.getAidatAmount();
+						}
+						aidatsOfPayerToShow.add(aidatOfPayerToShow);
+					}
+					Comparator<AidatToShow> myComparator=Comparator.comparing(AidatToShow::getAidatYear)
+							.thenComparing(AidatToShow::getAidatMonth);
+					List<AidatToShow> sortedAidatsOfPayerToShow=aidatsOfPayerToShow.stream()
+							.sorted(myComparator).collect(Collectors.toList());
+					textField1.setText(mukellefinOdenmemisToplami+"");
+					tableView.getItems().clear();
+					tableView.getItems().addAll(sortedAidatsOfPayerToShow);
+					textField3.setText(payer.getPayerName());
+					textField4.setText(payer.getPayerPhone());
+					textArea.setText(payer.getPayerAddress());
+					
+					toplamOdenmemisAidat=0;
+					List<AidatToShow> aidatsToShow=new ArrayList<AidatToShow>();
+					List<Aidat> aidats=null;
+					try {
+						aidats=dao.getAllAidats();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(Aidat aidat: aidats)
+					{
+						AidatToShow aidatToShow=new AidatToShow();
+						aidatToShow.setAidatId(aidat.getAidatId());
+						aidatToShow.setAidatMonth(aidat.getAidatMonth());
+						aidatToShow.setAidatYear(aidat.getAidatYear());
+						aidatToShow.setAidatAmount(aidat.getAidatAmount());
+						aidatToShow.setPayerNo(aidat.getPayerNo());
+						if(aidat.getAidatStatus()>0) aidatToShow.setAidatStatus("Ödendi");
+						else 
+						{
+							aidatToShow.setAidatStatus("Ödenmedi");
+							toplamOdenmemisAidat+=aidatToShow.getAidatAmount();
+						}
+						aidatsToShow.add(aidatToShow);
+					}
+					myComparator=Comparator.comparing(AidatToShow::getAidatYear)
+							.thenComparing(AidatToShow::getAidatMonth);
+					List<AidatToShow> sortedAidatsToShow=aidatsToShow.stream()
+							.sorted(myComparator).collect(Collectors.toList());
+					textField2.setText(toplamOdenmemisAidat+"");
+					tableView1.getItems().clear();
+					tableView1.getItems().addAll(sortedAidatsToShow);
+					
+				}
+			};
+			col4.setOnEditCommit(changeAidatStatusOnTableViewEventHandler);
+			
 			Label label1=new Label("Mükellefin Ödenmemiş Toplamı:");
 			label1.setPrefSize(210, 20);
 			label1.setLayoutX(510);
@@ -545,7 +712,7 @@ public class Main extends Application {
 			
 			List<Aidat> aidats=dao.getAllAidats();
 			List<AidatToShow> aidatsToShow=new ArrayList<AidatToShow>();
-			long toplamOdenmemisAidat=0;
+			toplamOdenmemisAidat=0;
 			for(Aidat aidat:aidats)
 			{
 				AidatToShow aidatToShow=new AidatToShow();
@@ -609,9 +776,162 @@ public class Main extends Application {
 			tableView1.getColumns().add(col33);
 			tableView1.getColumns().add(col44);
 			tableView1.getColumns().add(col55);
+			
+			tableView1.setEditable(true);
+			col44.setEditable(true);
+			
+			col44.setCellFactory(TextFieldTableCell.forTableColumn());
+			
+			tableView1.setRowFactory(tv -> 
+			{
+			    TableRow<AidatToShow> row = new TableRow<>();
+			    row.setOnMouseClicked(e -> 
+			    {
+			        if (e.getClickCount() == 2 && !row.isEmpty()) 
+			        {
+//			            int index = row.getIndex();
+//			            ONTESTTableView.edit(index, colONTEST3);
+			        	
+			        	if(tableView1.getSelectionModel().getSelectedItem()!=null)
+						{
+							try 
+							{
+								int index = row.getIndex();
+								tableView1.edit(index, col44);
+							} 
+							catch (Exception e1) 
+							{
+								e1.printStackTrace();
+							}
+						}
+						else
+						{
+							Alert alert=new Alert(AlertType.INFORMATION);
+							alert.setTitle("Dikkat");
+							alert.setHeaderText("Uyarı");
+							alert.setContentText("Bunu yapmak için önce bir aidat seçmeniz gerekir");
+							alert.showAndWait().orElse(null);
+						}
+			        }
+			    });
+			    
+			    return row;
+			});
+			
+			EventHandler<TableColumn.CellEditEvent<AidatToShow, String>> 
+			changeAidatStatusOnTableView1EventHandler
+						=new EventHandler<TableColumn.CellEditEvent<AidatToShow, String>>()
+			{
+				@Override
+				public void handle(CellEditEvent<AidatToShow, String> event) 
+				{
+					
+					long payerNo=tableView1.getSelectionModel().getSelectedItem().getPayerNo();
+					AidatToShow aidatToShowToBeUpdated=tableView1.getSelectionModel().getSelectedItem();
+					String newStatus="";
+					if(event.getNewValue().equalsIgnoreCase("Ödendi")) newStatus="Ödendi";
+					else if(event.getNewValue().equalsIgnoreCase("Ödenmedi")) newStatus="Ödenmedi";
+					else newStatus=event.getOldValue();
+					aidatToShowToBeUpdated.setAidatStatus(newStatus);
+					long newStatusCode=0;
+					if(aidatToShowToBeUpdated.getAidatStatus().equals("Ödendi"))
+					{
+						newStatusCode=1;
+					}
+					try 
+					{
+						
+						dao.updateAidatStatus(aidatToShowToBeUpdated.getAidatMonth(),
+								aidatToShowToBeUpdated.getAidatYear(), 
+								aidatToShowToBeUpdated.getPayerNo(), 
+								newStatusCode);
+					}
+					catch(SQLException ex)
+					{
+						
+					}
+					List<Aidat> aidatsOfPayer=null;
+					mukellefinOdenmemisToplami=0;
+					List<AidatToShow> aidatsOfPayerToShow=new ArrayList<AidatToShow>();
+					AidatPayer payer=null;
+					try {
+						payer=dao.getAidatPayerByPayerNo(payerNo);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						aidatsOfPayer=dao.getAidatsByPayerNo(payerNo);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(Aidat aidatOfPayer:aidatsOfPayer)
+					{
+						AidatToShow aidatOfPayerToShow=new AidatToShow();
+						aidatOfPayerToShow.setAidatId(aidatOfPayer.getAidatId());
+						aidatOfPayerToShow.setAidatMonth(aidatOfPayer.getAidatMonth());
+						aidatOfPayerToShow.setAidatYear(aidatOfPayer.getAidatYear());
+						aidatOfPayerToShow.setAidatAmount(aidatOfPayer.getAidatAmount());
+						aidatOfPayerToShow.setPayerNo(aidatOfPayer.getPayerNo());
+						if(aidatOfPayer.getAidatStatus()>0) aidatOfPayerToShow.setAidatStatus("Ödendi");
+						else 
+						{
+							aidatOfPayerToShow.setAidatStatus("Ödenmedi");
+							mukellefinOdenmemisToplami+=aidatOfPayer.getAidatAmount();
+						}
+						aidatsOfPayerToShow.add(aidatOfPayerToShow);
+					}
+					Comparator<AidatToShow> myComparator=Comparator.comparing(AidatToShow::getAidatYear)
+							.thenComparing(AidatToShow::getAidatMonth);
+					List<AidatToShow> sortedAidatsOfPayerToShow=aidatsOfPayerToShow.stream()
+							.sorted(myComparator).collect(Collectors.toList());
+					textField1.setText(mukellefinOdenmemisToplami+"");
+					tableView.getItems().clear();
+					tableView.getItems().addAll(sortedAidatsOfPayerToShow);
+					textField3.setText(payer.getPayerName());
+					textField4.setText(payer.getPayerPhone());
+					textArea.setText(payer.getPayerAddress());
+					
+					toplamOdenmemisAidat=0;
+					List<AidatToShow> aidatsToShow=new ArrayList<AidatToShow>();
+					List<Aidat> aidats=null;
+					try {
+						aidats=dao.getAllAidats();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(Aidat aidat: aidats)
+					{
+						AidatToShow aidatToShow=new AidatToShow();
+						aidatToShow.setAidatId(aidat.getAidatId());
+						aidatToShow.setAidatMonth(aidat.getAidatMonth());
+						aidatToShow.setAidatYear(aidat.getAidatYear());
+						aidatToShow.setAidatAmount(aidat.getAidatAmount());
+						aidatToShow.setPayerNo(aidat.getPayerNo());
+						if(aidat.getAidatStatus()>0) aidatToShow.setAidatStatus("Ödendi");
+						else 
+						{
+							aidatToShow.setAidatStatus("Ödenmedi");
+							toplamOdenmemisAidat+=aidatToShow.getAidatAmount();
+						}
+						aidatsToShow.add(aidatToShow);
+					}
+					myComparator=Comparator.comparing(AidatToShow::getAidatYear)
+							.thenComparing(AidatToShow::getAidatMonth);
+					List<AidatToShow> sortedAidatsToShow=aidatsToShow.stream()
+							.sorted(myComparator).collect(Collectors.toList());
+					textField2.setText(toplamOdenmemisAidat+"");
+					tableView1.getItems().clear();
+					tableView1.getItems().addAll(sortedAidatsToShow);
+					
+				}
+			};
+			col44.setOnEditCommit(changeAidatStatusOnTableView1EventHandler);
 			//tableview1.autosize();
 			tableView1.getItems().addAll(sortedAidatsToShow);
-			
+		
 			Label label2=new Label("Ödenmemiş Toplam:");
 			label2.setPrefSize(210, 20);
 			label2.setLayoutX(740);
