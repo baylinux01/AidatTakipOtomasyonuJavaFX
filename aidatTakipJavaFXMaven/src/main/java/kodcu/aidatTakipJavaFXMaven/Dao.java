@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +54,8 @@ public class Dao {
 			Connection con1 = DriverManager.getConnection(url);
 //			Connection con1 = DriverManager.getConnection(emptyUrl,uname,pass);
 			
-			PreparedStatement st1= con1.prepareStatement(query1);
-			st1.executeUpdate();
+			Statement st1= con1.createStatement();
+			st1.executeUpdate(query1);
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
